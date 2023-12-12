@@ -6,8 +6,14 @@
 ?>
 
 <?php $view->component('start') ?>
-    <h1>Регистрация</h1>
-        <form action="/register" method="post">
+    <h1>Авторизация</h1>
+        <form action="/login" method="post">
+            <?php if ($session->has('error')) { ?>
+                <p style="color: red">
+                    <?php echo $session->getFlash('error') ?>
+                </p>
+            <?php } ?>
+
             <div>
                 <input type="text"
                        id="name"
@@ -15,13 +21,6 @@
                        placeholder="Иван Иванов"
                 >
                 <label for="name">Имя</label>
-                <?php if ($session->has('name')) { ?>
-                    <ul>
-                        <?php foreach ($session->getFlash('name') as $error) { ?>
-                            <li style="color: red;"><?php echo $error ?></li>
-                        <?php } ?>
-                    </ul>
-                <?php } ?>
             </div>
             <div>
                 <input type="email"
@@ -30,13 +29,6 @@
                        placeholder="name@gmail.com"
                 >
                 <label for="email">E-mail</label>
-                <?php if ($session->has('email')) { ?>
-                    <ul>
-                        <?php foreach ($session->getFlash('email') as $error) { ?>
-                            <li style="color: red;"><?php echo $error ?></li>
-                        <?php } ?>
-                    </ul>
-                <?php } ?>
             </div>
             <div>
                 <input type="password"
@@ -45,13 +37,6 @@
                        placeholder="*********"
                 >
                 <label for="password">Пароль</label>
-                <?php if ($session->has('password')) { ?>
-                    <ul>
-                        <?php foreach ($session->getFlash('password') as $error) { ?>
-                            <li style="color: red;"><?php echo $error ?></li>
-                        <?php } ?>
-                    </ul>
-                <?php } ?>
             </div>
             <div>
                 <input type="password"
@@ -63,7 +48,7 @@
                 <label for="password_confirmation">Подтверждение</label>
             </div>
 
-            <button>Создать аккаунт</button>
+            <button>Войти</button>
         </form>
 
 <?php $view->component('end') ?>
