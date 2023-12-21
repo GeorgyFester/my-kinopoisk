@@ -5,6 +5,7 @@ namespace App\Kernel\View;
 use App\Kernel\Auth\AuthInterface;
 use App\kernel\Exceptions\ViewNotFoundException;
 use App\Kernel\Session\SessionInterface;
+use App\Kernel\Storage\StorageInterface;
 
 class View implements ViewInterface
 {
@@ -13,7 +14,7 @@ class View implements ViewInterface
     public function __construct(
         private SessionInterface $session,
         private AuthInterface $auth,
-//        private StorageInterface $storage
+        private StorageInterface $storage
     ) {
     }
 
@@ -27,8 +28,7 @@ class View implements ViewInterface
             throw new ViewNotFoundException("View $name not found");
         }
 
-        //extract(array_merge($this->defaultData(), $data));
-        extract($this->defaultData());
+        extract(array_merge($this->defaultData(), $data));
 
         include_once $viewPath;
     }
@@ -46,10 +46,9 @@ class View implements ViewInterface
             return;
         }
 
-        //extract(array_merge($this->defaultData(), $data));
-        extract($this->defaultData());
+        extract(array_merge($this->defaultData(), $data));
 
-        include_once $componentPath;
+        include $componentPath;
     }
 
     private function defaultData(): array
@@ -58,12 +57,12 @@ class View implements ViewInterface
             'view' => $this,
             'session' => $this->session,
             'auth' => $this->auth,
-            //'storage' => $this->storage,
+            'storage' => $this->storage,
         ];
     }
 
-//    public function title(): string
-//    {
-//        return $this->title;
-//    }
+    public function title(): string
+    {
+        return $this->title;
+    }
 }

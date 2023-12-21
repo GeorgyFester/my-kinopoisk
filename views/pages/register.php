@@ -6,13 +6,20 @@
 ?>
 
 <?php $view->component('start') ?>
-    <h1>Регистрация</h1>
+
+<main>
+    <div>
+        <h3>Регистрация</h3>
+        <hr>
+    </div>
+    <div>
         <form action="/register" method="post">
             <div>
-                <input type="text"
-                       id="name"
-                       name="name"
-                       placeholder="Иван Иванов"
+                <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    placeholder="Иван Иванов"
                 >
                 <label for="name">Имя</label>
                 <?php if ($session->has('name')) { ?>
@@ -24,10 +31,11 @@
                 <?php } ?>
             </div>
             <div>
-                <input type="email"
-                       name="email"
-                       id="email"
-                       placeholder="name@gmail.com"
+                <input
+                    type="email"
+                    name="email"
+                    id="email"
+                    placeholder="name@gmail.com"
                 >
                 <label for="email">E-mail</label>
                 <?php if ($session->has('email')) { ?>
@@ -39,10 +47,11 @@
                 <?php } ?>
             </div>
             <div>
-                <input type="password"
-                       id="password"
-                       name="password"
-                       placeholder="*********"
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="*********"
                 >
                 <label for="password">Пароль</label>
                 <?php if ($session->has('password')) { ?>
@@ -54,16 +63,19 @@
                 <?php } ?>
             </div>
             <div>
-                <input type="password"
-                       class="form-control"
-                       id="password_confirmation"
-                       name="password_confirmation"
-                       placeholder="*********"
+                <input
+                    type="password"
+                    class="form-control"
+                    id="password_confirmation"
+                    name="password_confirmation"
+                    placeholder="*********"
                 >
                 <label for="password_confirmation">Подтверждение</label>
             </div>
 
             <button>Создать аккаунт</button>
         </form>
+    </div>
+</main>
 
 <?php $view->component('end') ?>

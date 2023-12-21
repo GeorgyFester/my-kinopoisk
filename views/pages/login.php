@@ -6,49 +6,43 @@
 ?>
 
 <?php $view->component('start') ?>
-    <h1>Авторизация</h1>
-        <form action="/login" method="post">
-            <?php if ($session->has('error')) { ?>
-                <p style="color: red">
-                    <?php echo $session->getFlash('error') ?>
-                </p>
-            <?php } ?>
 
+<main>
+    <form action="/login" method="post">
+        <?php if ($session->has('error')) { ?>
             <div>
-                <input type="text"
-                       id="name"
-                       name="name"
-                       placeholder="Иван Иванов"
-                >
-                <label for="name">Имя</label>
+                <?php echo $session->getFlash('error') ?>
             </div>
-            <div>
-                <input type="email"
-                       name="email"
-                       id="email"
-                       placeholder="name@gmail.com"
-                >
-                <label for="email">E-mail</label>
-            </div>
-            <div>
-                <input type="password"
-                       id="password"
-                       name="password"
-                       placeholder="*********"
-                >
-                <label for="password">Пароль</label>
-            </div>
-            <div>
-                <input type="password"
-                       class="form-control"
-                       id="password_confirmation"
-                       name="password_confirmation"
-                       placeholder="*********"
-                >
-                <label for="password_confirmation">Подтверждение</label>
-            </div>
-
-            <button>Войти</button>
-        </form>
+        <?php } ?>
+        <div style="align-items: center; justify-content: space-between">
+            <h2>Вход</h2>
+            <a href="/">
+                <h5>Кинопоиск <span>Lite</span></h5>
+            </a>
+        </div>
+        <div>
+            <input
+                type="email"
+                class="form-control"
+                name="email"
+                id="floatingInput"
+                placeholder="name@areaweb.su"
+            >
+            <label for="floatingInput">E-mail</label>
+        </div>
+        <div>
+            <input
+                type="password"
+                name="password"
+                class="form-control"
+                id="floatingPassword"
+                placeholder="Пароль"
+            >
+            <label for="floatingPassword">Пароль</label>
+        </div>
+        <button type="submit">Войти</button>
+        <p>Кинопоиск 2023</p>
+    </form>
+</main>
 
 <?php $view->component('end') ?>
